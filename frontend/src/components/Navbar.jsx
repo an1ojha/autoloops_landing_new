@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import Logo from './Logo';
+
+const navLinks = [
+  { label: 'how it works', href: '#how-it-works' },
+  { label: 'upskill', href: '#upskill' },
+  { label: 'what they do', href: '#use-cases' },
+];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
-  const closeMobileMenu = () => {
-    setMobileMenuOpen(false);
-  };
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+  const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
     <>
@@ -28,32 +29,45 @@ const Navbar = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-white/80 backdrop-blur-xl shadow-sm' : 'bg-transparent'
+          scrolled
+            ? 'bg-ink/85 backdrop-blur-xl border-b border-white/[0.06]'
+            : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-          <div className="flex items-center justify-between h-20">
-            <div className="flex items-center gap-3">
-              <img
-                src="/assets/images/logo.png"
-                alt="Autoloops Logo"
-                className="h-12 w-auto"
-              />
-              <span className="text-2xl font-bold">
-                <span className="text-slate-900">Auto</span>
-                <span className="bg-gradient-to-r from-teal-700 to-sky-500 bg-clip-text text-transparent">loops</span>
-              </span>
-            </div>
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="flex items-center justify-between h-16">
+            <a href="/" className="flex items-center" aria-label="Autoloops home">
+              <Logo size={20} />
+            </a>
 
             <div className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="font-mono text-xs uppercase tracking-[0.14em] text-white/55 hover:text-white transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
               <a
-                href="https://calendly.com/anirudh-autoloops/30min"
+                href="https://upskill.autoloops.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-xs uppercase tracking-[0.14em] text-white/55 hover:text-white transition-colors inline-flex items-center gap-1"
+              >
+                upskill
+                <ArrowUpRight className="w-3 h-3" />
+              </a>
+              <a
+                href="https://agent.autoloops.ai"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="nav-cta-button"
-                className="h-12 px-8 rounded-full bg-gradient-to-r from-teal-600 to-blue-600 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center"
+                className="h-9 px-5 bg-white text-ink font-mono text-[11px] uppercase tracking-[0.14em] flex items-center justify-center gap-1.5 hover:bg-white/90 transition-colors"
               >
-                Contact Us
+                Open Agent
+                <ArrowUpRight className="w-3 h-3" strokeWidth={2.25} />
               </a>
             </div>
 
@@ -62,15 +76,15 @@ const Navbar = () => {
               data-testid="mobile-menu-button"
               aria-label="Toggle mobile menu"
               aria-expanded={mobileMenuOpen}
-              className="md:hidden p-3 text-slate-600 hover:text-teal-600 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="md:hidden p-3 -mr-3 text-white min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               {mobileMenuOpen ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M4 7h16M4 12h16M4 17h16" />
                 </svg>
               )}
             </button>
@@ -81,30 +95,50 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
+          exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2 }}
-          className="fixed top-20 left-0 right-0 z-40 md:hidden bg-white/95 backdrop-blur-xl shadow-lg border-b border-slate-200"
+          className="fixed top-16 left-0 right-0 z-40 md:hidden bg-ink/95 backdrop-blur-xl border-b border-white/10"
         >
-          <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={closeMobileMenu}
+                className="font-mono text-sm uppercase tracking-[0.14em] text-white/70 hover:text-white py-3 border-b border-white/[0.06] min-h-[44px] flex items-center"
+              >
+                {link.label}
+              </a>
+            ))}
             <a
-              href="https://calendly.com/anirudh-autoloops/30min"
+              href="https://upskill.autoloops.ai"
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMobileMenu}
-              className="block w-full h-14 px-8 rounded-full bg-gradient-to-r from-teal-600 to-blue-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center min-h-[44px]"
+              className="font-mono text-sm uppercase tracking-[0.14em] text-white/70 hover:text-white py-3 border-b border-white/[0.06] min-h-[44px] flex items-center gap-1.5"
             >
-              Contact Us
+              upskill
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href="https://agent.autoloops.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMobileMenu}
+              className="mt-4 h-12 px-6 bg-white text-ink font-mono text-xs uppercase tracking-[0.14em] flex items-center justify-center gap-2"
+            >
+              Open Agent
+              <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2.25} />
             </a>
           </div>
         </motion.div>
       )}
 
-      {/* Overlay for mobile menu */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 md:hidden"
+          className="fixed inset-0 bg-black/50 z-30 md:hidden"
           onClick={closeMobileMenu}
           aria-hidden="true"
         />
