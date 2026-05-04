@@ -51,15 +51,6 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="https://upskill.autoloops.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs uppercase tracking-[0.14em] text-white/55 hover:text-white transition-colors inline-flex items-center gap-1"
-              >
-                upskill
-                <ArrowUpRight className="w-3 h-3" />
-              </a>
-              <a
                 href="https://agent.autoloops.ai"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -112,16 +103,6 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <a
-              href="https://upskill.autoloops.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeMobileMenu}
-              className="font-mono text-sm uppercase tracking-[0.14em] text-white/70 hover:text-white py-3 border-b border-white/[0.06] min-h-[44px] flex items-center gap-1.5"
-            >
-              upskill
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
             <a
               href="https://agent.autoloops.ai"
               target="_blank"
