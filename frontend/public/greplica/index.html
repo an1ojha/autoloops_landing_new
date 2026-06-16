@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Assets live under /greplica/. This page is served at both / and /greplica/,
+       so a base href keeps every relative URL (css, js modules, images) resolving
+       to the same place regardless of the request path. -->
+  <base href="/greplica/" />
+  <title>Greplica — searchable memory of your engineering decisions</title>
+  <meta name="description" content="Greplica saves the useful context from your coding sessions into a searchable knowledge graph, so your coding agent starts smarter every time. Open source, fully local, no API key needed." />
+
+  <link rel="canonical" href="https://autoloops.ai/" />
+  <link rel="icon" type="image/png" href="assets/clawd.png" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://autoloops.ai/" />
+  <meta property="og:title" content="Greplica — searchable memory of your engineering decisions" />
+  <meta property="og:description" content="Greplica saves the useful context from your coding sessions into a searchable knowledge graph, so your coding agent starts smarter every time. Open source, fully local, no API key needed." />
+  <meta property="og:image" content="https://autoloops.ai/assets/clawd.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Greplica — searchable memory of your engineering decisions" />
+  <meta name="twitter:description" content="Greplica saves the useful context from your coding sessions into a searchable knowledge graph, so your coding agent starts smarter every time. Open source, fully local, no API key needed." />
+  <meta name="twitter:image" content="https://autoloops.ai/assets/clawd.png" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="terminal.css" />
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">Greplica</a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="https://github.com/Autoloops/greplica">Docs</a>
+          <a href="https://discord.gg/QeztUKA2P">
+            <svg viewBox="0 0 127.14 96.36" fill="currentColor" aria-hidden="true"><path d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"/></svg>
+            Discord
+          </a>
+        </nav>
+        <a class="btn btn-dark" href="https://github.com/Autoloops/greplica">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <main>
+    <section class="hero wrap">
+      <span class="pill">
+        Open Source · Fully Local · Fully Free
+      </span>
+
+      <h1>Memory of your engineering decisions,<br>searchable by your coding agent</h1>
+
+      <p class="sub">
+        Greplica saves the useful context from your coding sessions so your coding agent can start smarter each time.
+      </p>
+
+      <!-- Quick Start terminal box -->
+      <div class="quickstart" id="install">
+        <div class="qs-heading"><span class="qs-chev">›</span> Quick start</div>
+
+        <div class="termbox">
+          <div class="termbox-bar">
+            <span class="tdot r"></span>
+            <span class="tdot y"></span>
+            <span class="tdot g"></span>
+            <div class="termbox-tabs">
+              <button class="qs-tab active" data-tab="oneshot" data-comment="# Make your coding agent install everything. You're welcome.">One-shot</button>
+              <button class="qs-tab" data-tab="npm" data-comment="# Do this and follow the instructions manually">npm</button>
+            </div>
+          </div>
+
+          <div class="termbox-body">
+            <button class="copy-btn qs-copy" aria-label="Copy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+
+            <div class="qs-comment"># Make your coding agent install everything. You're welcome.</div>
+
+<div class="qs-panel active" data-panel="oneshot"></div>
+
+<pre class="qs-panel" data-panel="npm" hidden>$ npm install -g greplica</pre>
+          </div>
+        </div>
+
+        <p class="qs-caption">Copy the one-shot prompt and run in your favorite coding agent. Save to memory after each session.</p>
+      </div>
+
+      <!-- Trusted by ticker -->
+      <div class="trusted-by">
+        <div class="qs-heading"><span class="qs-chev">›</span> Trusted by teams at</div>
+        <div class="trusted-ticker" aria-label="Trusted by teams at Google, Glean, JPMorgan Chase, Microsoft, Parallel, and Amazon">
+          <div class="trusted-track">
+            <div class="trusted-set">
+              <span class="logo-item" aria-label="Google">
+                <img src="assets/logos/google.svg" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="logo-item" aria-label="Glean">
+                <img src="assets/logos/glean.svg" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="logo-item" aria-label="JPMorgan Chase">
+                <img src="assets/logos/jpmorgan.svg" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="logo-item" aria-label="Microsoft">
+                <img src="assets/logos/microsoft.svg" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="logo-item" aria-label="Parallel">
+                <img src="assets/logos/parallel.svg" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="logo-item" aria-label="Amazon">
+                <img src="assets/logos/amazon.svg" alt="" loading="lazy" decoding="async">
+              </span>
+            </div>
+            <div class="trusted-set" aria-hidden="true">
+              <span class="logo-item" aria-hidden="true">
+                <img src="assets/logos/google.svg" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="logo-item" aria-hidden="true">
+                <img src="assets/logos/glean.svg" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="logo-item" aria-hidden="true">
+                <img src="assets/logos/jpmorgan.svg" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="logo-item" aria-hidden="true">
+                <img src="assets/logos/microsoft.svg" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="logo-item" aria-hidden="true">
+                <img src="assets/logos/parallel.svg" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="logo-item" aria-hidden="true">
+                <img src="assets/logos/amazon.svg" alt="" loading="lazy" decoding="async">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live terminal demo: Claude welcome → greplica graph context -->
+      <div class="showcase">
+        <div id="live-terminal-mount"></div>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURES ===================== -->
+    <section class="features wrap" id="features">
+      <div class="features-grid">
+        <div class="feature">
+          <span class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M4.2 7.2l2.1 2.1M17.7 14.7l2.1 2.1M3 12h3M18 12h3M4.2 16.8l2.1-2.1M17.7 9.3l2.1-2.1"/><circle cx="12" cy="12" r="3.5"/><path d="M8 20h8a2 2 0 0 0 2-2V8l-4-3H8a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2z"/></svg>
+          </span>
+          <h3>Self-Updating Wiki</h3>
+          <p>Greplica writes structured memory after every session — components, flows, decisions — so the graph grows as your codebase does.</p>
+        </div>
+        <div class="feature">
+          <span class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V8a5 5 0 0 1 9.9-1"/><path d="M17 13v3a5 5 0 0 1-9.9 1"/><circle cx="12" cy="12" r="2.5"/><path d="m9 9 6 6"/></svg>
+          </span>
+          <h3>No API Key Needed</h3>
+          <p>Works with your existing Claude Code or Codex plan. No new API keys, no new services to pay for.</p>
+        </div>
+        <div class="feature">
+          <span class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8.1 7.4 10 15M15.9 7.4 14 15M7.8 6.8h8.4"/></svg>
+          </span>
+          <h3>Better than AGENTS.md</h3>
+          <p>Memory is stored as linked nodes and not flat markdown. Your agent progressively discovers what's relevant.</p>
+        </div>
+        <div class="feature">
+          <span class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="5" rx="1.5"/><rect x="4" y="14" width="16" height="5" rx="1.5"/><path d="M8 7.5h.01M8 16.5h.01"/></svg>
+          </span>
+          <h3>Agent-Native Skills</h3>
+          <p>Ships as only two Claude Code skills. Paste one prompt, your agent does the rest.</p>
+        </div>
+        <div class="feature">
+          <span class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M15.5 15.5 21 21"/><path d="M7.5 8.5h6M7.5 10.5h4M7.5 12.5h5"/></svg>
+          </span>
+          <h3>Hybrid Search</h3>
+          <p>Retrieval combines keyword search, semantic embeddings, and graph connections. Returns relevant, ranked results.</p>
+        </div>
+        <div class="feature">
+          <span class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 20h10"/><path d="M9 16v4M15 16v4"/><path d="M8 9h8M8 12h5"/><circle cx="17" cy="8" r="2.5"/><path d="M17 7v2"/></svg>
+          </span>
+          <h3>Fully Local</h3>
+          <p>Stored in <code>~/.greplica/graph.db</code> on your machine. No cloud sync, no telemetry, no data leaving your repo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="cta wrap">
+      <h2>Never forget the <em>why</em> of each line of code</h2>
+      <p>Greplica is open source and free to use.<br>Install once, auto-builds the memory of your codebase.</p>
+      <div class="quickstart">
+        <div class="termbox">
+          <div class="termbox-bar">
+            <span class="tdot r"></span>
+            <span class="tdot y"></span>
+            <span class="tdot g"></span>
+            <div class="termbox-tabs">
+              <button class="qs-tab active" data-tab="oneshot" data-comment="# Make your coding agent install everything. You're welcome.">One-shot</button>
+              <button class="qs-tab" data-tab="npm" data-comment="# Do this and follow the instructions manually">npm</button>
+            </div>
+          </div>
+
+          <div class="termbox-body">
+            <button class="copy-btn qs-copy" aria-label="Copy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+
+            <div class="qs-comment"># Make your coding agent install everything. You're welcome.</div>
+
+<div class="qs-panel active" data-panel="oneshot"></div>
+
+<pre class="qs-panel" data-panel="npm" hidden>$ npm install -g greplica</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER (Entire style) ===================== -->
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <div class="footer-meta">
+          <p>Made with ☕ in TypeScript</p>
+          <p>© 2026 greplica</p>
+        </div>
+        <span class="status"><span class="led"></span> All systems operational</span>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="https://github.com/Autoloops/greplica">CLI</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://github.com/Autoloops/greplica">GitHub</a>
+        <a href="https://discord.gg/QeztUKA2P">Discord</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Single source of truth for the one-shot prompt, cloned into every
+       .qs-panel[data-panel="oneshot"] so the copy never drifts between the
+       hero and CTA install boxes. -->
+  <template id="oneshot-prompt"><pre class="qs-text">Install Greplica for this repo.
+
+First install the CLI:
+
+```bash
+npm install -g greplica
+```
+
+Then run the installer for the agent I am using:
+
+Codex:
+```bash
+greplica install --platform codex --embedding local
+```
+
+Claude Code:
+```bash
+greplica install --platform claude --embedding local
+```
+
+OpenCode:
+```bash
+greplica install --platform opencode --embedding local
+```
+
+Do not manually copy skills. Let the installer do it.
+
+After installation, tell me where the skills were installed, which embedding mode was configured, whether I should restart the agent, and how to switch later to OpenAI embeddings if I want that.
+
+Then tell me how to use Greplica:
+- If this repo has not been initialized yet, tell me to run "Use greplica-bootstrap for this repo." once. If repo memory already exists, do not run it again.
+- Tell me that during work, the agent can use `greplica graph context "&lt;question&gt;"` to fetch relevant repo context, including prior working memory, before broad manual exploration.
+- Tell me that near the end of a useful session, I should run "Use greplica-update-working-memory for this session." so decisions, changed flows, constraints, and follow-up work are stored.
+- Tell me that OpenAI embeddings are also available later by rerunning `greplica install --platform &lt;codex-or-claude-or-opencode&gt; --embedding openai`.
+- IMPORTANT: tell me to add the Greplica guidance block manually to AGENTS.md or CLAUDE.md if I want the agent to keep using Greplica automatically.</pre><button class="qs-toggle" type="button" aria-expanded="false"><span class="qs-toggle-chev">&rsaquo;</span> <span class="qs-toggle-lbl">expand to see full prompt</span></button></template>
+
+  <script>
+    // Populate every one-shot panel from the shared template before wiring up.
+    const oneshotTpl = document.getElementById('oneshot-prompt');
+    if (oneshotTpl) {
+      document.querySelectorAll('.qs-panel[data-panel="oneshot"]').forEach(panel => {
+        panel.appendChild(oneshotTpl.content.cloneNode(true));
+      });
+    }
+
+    // Quick Start terminal boxes: tab switching + copy active panel
+    document.querySelectorAll('.quickstart').forEach(box => {
+      const tabs = box.querySelectorAll('.qs-tab');
+      const panels = box.querySelectorAll('.qs-panel');
+      const comment = box.querySelector('.qs-comment');
+      const copy = box.querySelector('.qs-copy');
+
+      const activePanel = () => box.querySelector('.qs-panel.active');
+
+      // Expand / collapse the one-shot prompt
+      const oneshot = box.querySelector('.qs-panel[data-panel="oneshot"]');
+      const toggle = oneshot && oneshot.querySelector('.qs-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const expanded = oneshot.classList.toggle('expanded');
+          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          toggle.querySelector('.qs-toggle-lbl').textContent =
+            expanded ? 'collapse' : 'expand to see full prompt';
+        });
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          panels.forEach(p => {
+            const on = p.dataset.panel === tab.dataset.tab;
+            p.classList.toggle('active', on);
+            p.hidden = !on;
+          });
+          if (comment && tab.dataset.comment) comment.textContent = tab.dataset.comment;
+        });
+      });
+
+      // Copy `text`, preferring the async Clipboard API and falling back to a
+      // hidden textarea + execCommand on non-HTTPS / older browsers.
+      const writeClipboard = async (text) => {
+        if (navigator.clipboard?.writeText) {
+          try {
+            await navigator.clipboard.writeText(text);
+            return true;
+          } catch { /* fall through to legacy path */ }
+        }
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          const ok = document.execCommand('copy');
+          ta.remove();
+          return ok;
+        } catch {
+          return false;
+        }
+      };
+
+      copy.addEventListener('click', async () => {
+        const panel = activePanel();
+        if (!panel) return;
+        // One-shot stores its full text in .qs-text; npm panel is the <pre> itself
+        const source = panel.querySelector('.qs-text') || panel;
+        const text = source.textContent.trim().replace(/^\$\s+/, '');
+        const original = copy.innerHTML;
+        const ok = await writeClipboard(text);
+        copy.classList.add(ok ? 'copied' : 'copy-failed');
+        copy.innerHTML = ok
+          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+        setTimeout(() => {
+          copy.classList.remove('copied', 'copy-failed');
+          copy.innerHTML = original;
+        }, 1600);
+      });
+    });
+  </script>
+
+  <!-- Live terminal demo player -->
+  <script type="module">
+    import { LiveTerminal, observeAutoplay } from "./js/live-terminal.js";
+    import { demoScript } from "./js/demos.js";
+
+    const mount = document.getElementById("live-terminal-mount");
+    if (mount) {
+      const term = new LiveTerminal(mount, {
+        theme: "agent",
+        title: "Terminal",
+        onRerun: () => term.play(demoScript),
+      });
+      // Autoplay once when the terminal scrolls into view. observeAutoplay
+      // fires immediately if the element is already visible on load, then
+      // disconnects — so this is the single autoplay trigger.
+      observeAutoplay(mount, () => term.play(demoScript));
+    }
+  </script>
+</body>
+</html>

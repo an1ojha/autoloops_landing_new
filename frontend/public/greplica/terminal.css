@@ -1,0 +1,266 @@
+/* ============================================================
+   Live terminal component — phosphor + agent (Claude) TUI themes.
+   Self-contained: no page-level globals, so it can be dropped into
+   any page (e.g. index.html) without clobbering layout.
+   ============================================================ */
+
+:root {
+  --panel-border: #2a2a32;
+  --page-muted: #6b7280;
+  --page-text: #b8c0cc;
+}
+
+.live-terminal {
+  font-family: "SF Mono", "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  text-align: left;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.live-terminal__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.live-terminal__dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #3a3a44;
+}
+
+.live-terminal__dot--r { background: #ff5f57; }
+.live-terminal__dot--y { background: #febc2e; }
+.live-terminal__dot--g { background: #28c840; }
+
+.live-terminal__title {
+  flex: 1;
+  text-align: left;
+  margin-left: 0.55rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--page-muted);
+}
+
+.live-terminal__rerun {
+  font: inherit;
+  font-size: 0.72rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 5px;
+  border: 1px solid var(--panel-border);
+  background: #121218;
+  color: var(--page-text);
+  cursor: pointer;
+}
+
+.live-terminal__rerun:hover { background: #1a1a22; }
+
+.live-terminal__screen {
+  height: 28rem;
+  overflow: auto;
+  padding: 1rem 1.1rem 1.25rem;
+  scroll-behavior: smooth;
+}
+
+.live-terminal__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.live-terminal__line {
+  font-size: 0.78rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.live-terminal__block { margin-top: 0.35rem; }
+
+.live-terminal__cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  background: currentColor;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.live-terminal--phosphor {
+  background: #000;
+  color: #33ff66;
+}
+
+.live-terminal--phosphor .live-terminal__chrome {
+  background: #0a0a0a;
+  border-color: #1a3d1a;
+}
+
+.live-terminal--phosphor .live-terminal__title { color: #5fd75f; }
+
+.live-terminal--phosphor .live-terminal__screen {
+  background: #000;
+  text-shadow: 0 0 6px rgba(51, 255, 102, 0.35);
+}
+
+.live-terminal--phosphor .live-terminal__rerun {
+  background: #0a120a;
+  border-color: #1f3f1f;
+  color: #5fd75f;
+}
+
+.live-terminal--phosphor .t-h1 { color: #5fff8a; font-weight: 600; }
+.live-terminal--phosphor .t-h2 { color: #44ee77; }
+.live-terminal--phosphor .t-h3 { color: #3ddd6a; }
+.live-terminal--phosphor .t-id { color: #7dffaa; }
+.live-terminal--phosphor .t-path { color: #2ecc60; opacity: 0.9; }
+.live-terminal--phosphor .t-dim { opacity: 0.55; }
+.live-terminal--phosphor .t-prompt { color: #33ff66; }
+
+.live-terminal--agent {
+  background: #000;
+  color: #e8e8e8;
+}
+
+.live-terminal--agent .live-terminal__chrome {
+  background: #0a0a0a;
+  border-color: #3a2028;
+}
+
+.live-terminal--agent .live-terminal__screen {
+  background: #000;
+  font-size: 0.8rem;
+}
+
+.live-terminal--agent .live-terminal__line--prompt { color: #e8e8e8; }
+
+.live-terminal--agent .live-terminal__rerun {
+  background: #120a0c;
+  border-color: #4a2830;
+  color: #f0a0a8;
+}
+
+.tui-border {
+  border: 1px solid #d75f5f;
+  padding: 0;
+}
+
+.tui-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0.65rem;
+  border-bottom: 1px solid #d75f5f;
+  font-size: 0.72rem;
+}
+
+.tui-header-right { text-align: right; }
+
+.tui-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem 0.75rem;
+}
+
+@media (max-width: 720px) {
+  .tui-body { grid-template-columns: 1fr; }
+}
+
+.tui-pink { color: #d75f5f; }
+.tui-green { color: #5fd75f; }
+.tui-white { color: #f2f2f2; }
+.tui-dim { color: #888; }
+.tui-meta { color: #ccc; font-size: 0.72rem; line-height: 1.45; }
+
+.tui-welcome {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+/* Official Clawd mascot */
+.clawd-img {
+  display: block;
+  margin: 0.4rem 0 0.6rem;
+  width: 92px;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.live-terminal__line--user {
+  color: #f2f2f2;
+  margin-top: 0.75rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 7px;
+  padding: 0.5rem 0.7rem;
+  display: flex;
+  align-items: baseline;
+  white-space: normal;
+  text-shadow: none;
+}
+
+.live-terminal__line--user::before {
+  content: ">";
+  color: #8a8a8a;
+  margin-right: 0.6rem;
+  flex: 0 0 auto;
+}
+
+.live-terminal__line--user .live-terminal__cursor {
+  background: #f2f2f2;
+}
+
+.chat-assistant {
+  color: #5fd75f;
+  display: block;
+  margin-top: 0.35rem;
+}
+
+/* Frozen agent intro (everything up to the ✻✻✻ stars + user bar): keep its
+   original agent look even after the terminal flips to the phosphor theme. */
+.live-terminal--phosphor .is-frozen-agent {
+  color: #e8e8e8;
+  text-shadow: none;
+}
+
+.live-terminal--phosphor .is-frozen-agent * {
+  text-shadow: none;
+}
+
+.tui-divider {
+  height: 1px;
+  background: #d75f5f;
+  opacity: 0.45;
+  margin: 0.55rem 0;
+}
+
+.tui-section {
+  font-size: 0.72rem;
+  margin-bottom: 0.35rem;
+}
+
+.tui-list {
+  list-style: none;
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.tui-list li { margin-bottom: 0.35rem; }
+
+.tui-footer {
+  margin-top: 0.65rem;
+  font-size: 0.72rem;
+  padding-left: 0.15rem;
+}
