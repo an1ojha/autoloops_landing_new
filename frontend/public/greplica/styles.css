@@ -180,7 +180,9 @@ a { color: inherit; text-decoration: none; }
 /* ---------------- Hero ---------------- */
 .hero {
   text-align: center;
-  padding: 5.5rem 0 3rem;
+  /* vertical only — keep .wrap's horizontal padding so content isn't flush
+     against the screen edges on mobile */
+  padding-block: 5.5rem 3rem;
 }
 
 .pill {
@@ -491,7 +493,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------------- Features ---------------- */
 .features {
-  padding: 5rem 0 2rem;
+  padding-block: 5rem 2rem;
   border-top: 1px solid var(--line);
 }
 .features-grid {
@@ -536,7 +538,7 @@ a { color: inherit; text-decoration: none; }
 /* ---------------- CTA + Footer (Entire style) ---------------- */
 .cta {
   text-align: center;
-  padding: 5rem 0;
+  padding-block: 5rem;
   border-top: 1px solid var(--line);
   margin-top: 3rem;
 }
@@ -605,7 +607,6 @@ a { color: inherit; text-decoration: none; }
   .brand { font-size: 1.45rem; }
 }
 @media (max-width: 560px) {
-  .hero { padding: 3.5rem 0 2rem; }
+  .hero { padding-block: 3.5rem 2rem; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .hero-badges { flex-wrap: wrap; }
 }
