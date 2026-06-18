@@ -1,8 +1,8 @@
 {
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/greplica", "destination": "/greplica/index.html" },
+    { "source": "/privacy", "destination": "/platform.html" },
+    { "source": "/terms", "destination": "/platform.html" },
+    { "source": "/(.*)", "destination": "/platform.html" }
   ]
 }
