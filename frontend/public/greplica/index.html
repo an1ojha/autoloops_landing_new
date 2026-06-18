@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <!-- Assets live under /greplica/. This page is served at both / and /greplica/,
        so a base href keeps every relative URL (css, js modules, images) resolving
        to the same place regardless of the request path. -->
   <base href="/greplica/" />
+
   <title>Greplica — searchable memory of your engineering decisions</title>
   <meta name="description" content="Greplica saves the useful context from your coding sessions into a searchable knowledge graph, so your coding agent starts smarter every time. Open source, fully local, no API key needed." />
 
   <link rel="canonical" href="https://autoloops.ai/" />
-  <link rel="icon" type="image/png" href="assets/clawd.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
@@ -24,6 +29,10 @@
   <meta name="twitter:description" content="Greplica saves the useful context from your coding sessions into a searchable knowledge graph, so your coding agent starts smarter every time. Open source, fully local, no API key needed." />
   <meta name="twitter:image" content="https://autoloops.ai/assets/clawd.png" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="terminal.css" />
 </head>
@@ -32,7 +41,9 @@
   <!-- ===================== NAV ===================== -->
   <header class="nav" id="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="/">Greplica</a>
+      <a class="brand" href="/">
+        <img class="brand-wordmark" src="assets/greplica-wordmark.png" alt="Greplica" />
+      </a>
       <div class="nav-right">
         <nav class="nav-links">
           <a href="https://github.com/Autoloops/greplica">Docs</a>
@@ -56,7 +67,10 @@
         Open Source · Fully Local · Fully Free
       </span>
 
-      <h1>Memory of your engineering decisions,<br>searchable by your coding agent</h1>
+      <h1>
+        Your engineering <span class="hero-rotate" aria-live="polite">decisions</span><br>
+        searchable by your coding agent
+      </h1>
 
       <p class="sub">
         Greplica saves the useful context from your coding sessions so your coding agent can start smarter each time.
@@ -236,7 +250,6 @@
           <p>Made with ☕ in TypeScript</p>
           <p>© 2026 greplica</p>
         </div>
-        <span class="status"><span class="led"></span> All systems operational</span>
       </div>
 
       <div class="footer-col">
@@ -289,7 +302,7 @@ Then tell me how to use Greplica:
 - Tell me that during work, the agent can use `greplica graph context "&lt;question&gt;"` to fetch relevant repo context, including prior working memory, before broad manual exploration.
 - Tell me that near the end of a useful session, I should run "Use greplica-update-working-memory for this session." so decisions, changed flows, constraints, and follow-up work are stored.
 - Tell me that OpenAI embeddings are also available later by rerunning `greplica install --platform &lt;codex-or-claude-or-opencode&gt; --embedding openai`.
-- IMPORTANT: tell me to add the Greplica guidance block manually to AGENTS.md or CLAUDE.md if I want the agent to keep using Greplica automatically.</pre><button class="qs-toggle" type="button" aria-expanded="false"><span class="qs-toggle-chev">&rsaquo;</span> <span class="qs-toggle-lbl">expand to see full prompt</span></button></template>
+- IMPORTANT: tell me to add the Greplica guidance block manually to AGENTS.md or CLAUDE.md if I want the agent to keep using Greplica automatically.</pre><span class="qs-toggle" aria-hidden="true">...</span></template>
 
   <script>
     // Populate every one-shot panel from the shared template before wiring up.
@@ -309,16 +322,53 @@ Then tell me how to use Greplica:
 
       const activePanel = () => box.querySelector('.qs-panel.active');
 
-      // Expand / collapse the one-shot prompt
+      const body = box.querySelector('.termbox-body');
+
+      // Expand / collapse the one-shot prompt (click anywhere in the box body)
       const oneshot = box.querySelector('.qs-panel[data-panel="oneshot"]');
-      const toggle = oneshot && oneshot.querySelector('.qs-toggle');
-      if (toggle) {
-        toggle.addEventListener('click', () => {
-          const expanded = oneshot.classList.toggle('expanded');
-          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-          toggle.querySelector('.qs-toggle-lbl').textContent =
-            expanded ? 'collapse' : 'expand to see full prompt';
+
+      const updateExpandable = () => {
+        if (!body || !oneshot) return;
+        const isOneshot = oneshot.classList.contains('active');
+        const expanded = oneshot.classList.contains('expanded');
+        body.classList.toggle('is-expandable', isOneshot);
+        if (isOneshot) {
+          body.setAttribute('role', 'button');
+          body.setAttribute('tabindex', '0');
+          body.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          body.setAttribute('aria-label', expanded ? 'Collapse prompt' : 'Show full prompt');
+        } else {
+          body.removeAttribute('role');
+          body.removeAttribute('tabindex');
+          body.removeAttribute('aria-expanded');
+          body.removeAttribute('aria-label');
+        }
+      };
+
+      const toggleExpand = () => {
+        if (!oneshot?.classList.contains('active')) return;
+        const wasExpanded = oneshot.classList.contains('expanded');
+        oneshot.classList.toggle('expanded');
+        if (wasExpanded) {
+          const text = oneshot.querySelector('.qs-text');
+          if (text) text.scrollTop = 0;
+        }
+        updateExpandable();
+      };
+
+      if (body && oneshot) {
+        body.addEventListener('click', (e) => {
+          if (e.target.closest('.qs-copy')) return;
+          if (!oneshot.classList.contains('active')) return;
+          toggleExpand();
         });
+        body.addEventListener('keydown', (e) => {
+          if (e.key !== 'Enter' && e.key !== ' ') return;
+          if (!oneshot.classList.contains('active')) return;
+          e.preventDefault();
+          toggleExpand();
+        });
+        updateExpandable();
       }
 
       tabs.forEach(tab => {
@@ -331,6 +381,7 @@ Then tell me how to use Greplica:
             p.hidden = !on;
           });
           if (comment && tab.dataset.comment) comment.textContent = tab.dataset.comment;
+          updateExpandable();
         });
       });
 
@@ -379,6 +430,19 @@ Then tell me how to use Greplica:
     });
   </script>
 
+  <script>
+    (() => {
+      const el = document.querySelector('.hero-rotate');
+      if (!el) return;
+      const words = ['decisions', 'trade-offs', 'mistakes', 'roadmap', 'intentions'];
+      let i = 0;
+      setInterval(() => {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+      }, 1200);
+    })();
+  </script>
+
   <!-- Live terminal demo player -->
   <script type="module">
     import { LiveTerminal, observeAutoplay } from "./js/live-terminal.js";
@@ -389,11 +453,9 @@ Then tell me how to use Greplica:
       const term = new LiveTerminal(mount, {
         theme: "agent",
         title: "Terminal",
-        onRerun: () => term.play(demoScript),
+        loop: true,
+        loopDelay: 2000,
       });
-      // Autoplay once when the terminal scrolls into view. observeAutoplay
-      // fires immediately if the element is already visible on load, then
-      // disconnects — so this is the single autoplay trigger.
       observeAutoplay(mount, () => term.play(demoScript));
     }
   </script>

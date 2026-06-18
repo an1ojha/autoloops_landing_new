@@ -9,8 +9,18 @@ export class LiveTerminal {
   #cursor;
   #abort = null;
   #playing = false;
+  #shouldLoop = false;
+  #initialTheme;
+  #initialTitle;
+  _script = null;
+  _loop = false;
+  _loopDelay = 2500;
 
-  constructor(root, { theme = "phosphor", title = "Terminal", onRerun } = {}) {
+  constructor(root, { theme = "phosphor", title = "Terminal", onRerun, loop = false, loopDelay = 2500 } = {}) {
+    this.#initialTheme = theme;
+    this.#initialTitle = title;
+    this._loop = loop;
+    this._loopDelay = loopDelay;
     this.#root = root;
     this.#root.className = `live-terminal live-terminal--${theme}`;
     this.#root.innerHTML = `
@@ -43,6 +53,7 @@ export class LiveTerminal {
   }
 
   stop() {
+    this.#shouldLoop = false;
     this.#abort?.abort();
     this.#abort = null;
     this.#playing = false;
@@ -54,16 +65,46 @@ export class LiveTerminal {
     this.#lines.innerHTML = "";
   }
 
+  #resetVisual() {
+    this.#lines.innerHTML = "";
+    this.#root.className = `live-terminal live-terminal--${this.#initialTheme}`;
+    const titleEl = this.#root.querySelector(".live-terminal__title");
+    if (titleEl) titleEl.textContent = this.#initialTitle;
+    this.#screen.scrollTop = 0;
+  }
+
   async replay(script) {
     if (script) this._script = script;
-    this.clear();
+    this.stop();
+    this.#shouldLoop = this._loop;
+    this.#resetVisual();
     if (!this._script) return;
     await this.play(this._script);
   }
 
   async play(script) {
-    this._script = script;
-    this.stop();
+    if (script) this._script = script;
+    if (!this._script) return;
+
+    this.#abort?.abort();
+    this.#shouldLoop = this._loop;
+
+    while (this.#shouldLoop) {
+      await this.#playOnce(this._script);
+      if (!this.#shouldLoop || !this._loop) break;
+
+      try {
+        await this.#wait(this._loopDelay, this.#abort.signal);
+      } catch {
+        break;
+      }
+
+      this.#resetVisual();
+    }
+  }
+
+  async #playOnce(script) {
+    this.#abort?.abort();
     this.#abort = new AbortController();
     const { signal } = this.#abort;
     this.#playing = true;
@@ -79,15 +120,18 @@ export class LiveTerminal {
     }
   }
 
-  async #runStep(step, signal) {
-    const wait = (ms) =>
-      new Promise((resolve, reject) => {
-        const id = setTimeout(resolve, ms);
-        signal.addEventListener("abort", () => {
-          clearTimeout(id);
-          reject(new DOMException("aborted", "AbortError"));
-        });
+  #wait(ms, signal) {
+    return new Promise((resolve, reject) => {
+      const id = setTimeout(resolve, ms);
+      signal?.addEventListener("abort", () => {
+        clearTimeout(id);
+        reject(new DOMException("aborted", "AbortError"));
       });
+    });
+  }
+
+  async #runStep(step, signal) {
+    const wait = (ms) => this.#wait(ms, signal);
 
     switch (step.type) {
       case "wait":
