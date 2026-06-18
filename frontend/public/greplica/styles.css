@@ -128,7 +128,7 @@ a { color: inherit; text-decoration: none; }
 .brand-wordmark {
   display: block;
   width: auto;
-  height: 2.85rem;
+  height: 2.4rem;
   /* PNG ships with a white background; multiply blends it into the
      site's --bg (#f6f5f2) so the box disappears and only the black
      letterforms remain. */
@@ -219,9 +219,15 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
   letter-spacing: -0.02em;
   margin: 0 auto;
-  max-width: 700px;
+  max-width: 760px;
   text-align: center;
-  text-wrap: balance;
+}
+
+/* Keep "All your engineering <rotating word>" together on the first line.
+   Only on wider screens — below this the line is allowed to wrap so it
+   never overflows narrow viewports. */
+@media (min-width: 620px) {
+  .hero-line { white-space: nowrap; }
 }
 
 .hero-rotate {
@@ -628,7 +634,7 @@ a { color: inherit; text-decoration: none; }
   .footer-brand { grid-column: 1 / -1; }
   .nav-links { display: none; }
   .nav-inner { padding-left: 1.5rem; padding-right: 1.5rem; height: 72px; }
-  .brand-wordmark { height: 2.15rem; }
+  .brand-wordmark { height: 1.8rem; }
 }
 @media (max-width: 560px) {
   .hero { padding-block: 3.5rem 2rem; }
