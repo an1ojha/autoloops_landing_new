@@ -304,14 +304,22 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 619px) {
   .hero-line {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.28rem;
+    margin-bottom: 0.28rem;
   }
 
   .hero-rotate {
     display: block;
     min-width: 0;
     text-align: center;
-    margin: 0.15rem auto 0;
+    margin: 0;
+  }
+
+  .hero h1 br {
+    display: none;
   }
 }
 
