@@ -639,6 +639,8 @@ a { color: inherit; text-decoration: none; }
   max-width: 720px;
   padding: 3.5rem 1.5rem 4.5rem;
   font-family: var(--sans);
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .blog-header {
@@ -732,6 +734,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -0.03em;
   line-height: 1.15;
   margin-bottom: 0.85rem;
+  overflow-wrap: break-word;
 }
 
 .blog-post-meta {
@@ -751,6 +754,8 @@ a { color: inherit; text-decoration: none; }
   font-size: 1rem;
   line-height: 1.7;
   color: var(--ink-soft);
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .prose > * + * { margin-top: 1.15rem; }
@@ -761,6 +766,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink);
   letter-spacing: -0.02em;
   margin-top: 2rem;
+  overflow-wrap: break-word;
 }
 
 .prose h3 {
@@ -768,9 +774,15 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   color: var(--ink);
   margin-top: 1.5rem;
+  overflow-wrap: break-word;
 }
 
 .prose p { max-width: 68ch; }
+
+.prose p,
+.prose li {
+  overflow-wrap: break-word;
+}
 
 .prose a {
   color: var(--accent);
@@ -795,6 +807,7 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--line);
   border-radius: 4px;
   padding: 0.12rem 0.35rem;
+  overflow-wrap: anywhere;
 }
 
 .prose pre {
@@ -803,6 +816,8 @@ a { color: inherit; text-decoration: none; }
   border-radius: var(--radius-sm);
   padding: 1rem 1.15rem;
   overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
   font-family: var(--mono);
   font-size: 0.85rem;
   line-height: 1.55;
@@ -814,6 +829,16 @@ a { color: inherit; text-decoration: none; }
   padding: 0;
   color: inherit;
   font-size: inherit;
+  white-space: pre;
+  overflow-wrap: normal;
+}
+
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
 }
 
 .prose img {
@@ -838,8 +863,39 @@ a { color: inherit; text-decoration: none; }
   .nav-links { display: none; }
   .nav-inner { padding-left: 1.5rem; padding-right: 1.5rem; height: 72px; }
   .brand-wordmark { height: 1.8rem; }
+
+  .blog-page {
+    padding: 2.5rem 1.25rem 3.5rem;
+  }
+
+  .blog-entry-title {
+    font-size: 1.2rem;
+    overflow-wrap: break-word;
+  }
+
+  .prose pre {
+    padding: 0.85rem 1rem;
+    font-size: 0.78rem;
+  }
 }
 @media (max-width: 560px) {
   .hero { padding-block: 3.5rem 2rem; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+
+  .nav-inner { padding-left: 1rem; padding-right: 1rem; }
+
+  .blog-page {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .blog-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .blog-post-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .prose h2 { font-size: 1.2rem; }
+  .prose h3 { font-size: 1.05rem; }
 }
