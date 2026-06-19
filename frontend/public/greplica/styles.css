@@ -38,6 +38,13 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body > main {
+  flex: 1;
 }
 
 /* opencode-style framed column: full-height vertical rules + top bar */
@@ -621,11 +628,209 @@ a { color: inherit; text-decoration: none; }
 .footer-col a {
   display: block;
   font-size: 0.85rem;
-  color: var(--muted);
+  color: var(--ink);
   padding: 0.28rem 0;
   transition: color 0.15s ease;
 }
-.footer-col a:hover { color: var(--ink); }
+.footer-col a:hover { color: #f25533; }
+
+.nav-links a.is-active { color: var(--accent); opacity: 1; }
+
+/* ---------------- Blog ---------------- */
+.blog-page {
+  max-width: 720px;
+  padding: 3.5rem 1.5rem 4.5rem;
+  font-family: var(--sans);
+}
+
+.blog-header {
+  margin-bottom: 2.5rem;
+}
+
+.blog-header h1 {
+  font-family: var(--sans);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.blog-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-entry {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.blog-entry:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.blog-entry-date {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--muted-soft);
+  margin-bottom: 0.55rem;
+}
+
+.blog-entry-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.65rem;
+}
+
+.blog-entry-title a {
+  color: var(--ink);
+  transition: color 0.15s ease;
+}
+
+.blog-entry-title a:hover { color: #f25533; }
+
+.blog-entry-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 0.85rem;
+  max-width: 62ch;
+}
+
+.blog-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+}
+
+.blog-back {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+  transition: color 0.15s ease;
+}
+
+.blog-back:hover { color: var(--ink); }
+
+.blog-post-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.blog-post-header h1 {
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 0.85rem;
+}
+
+.blog-post-meta {
+  font-size: 0.88rem;
+  color: var(--muted-soft);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.blog-post-meta .blog-tag {
+  margin-left: 0.15rem;
+}
+
+.prose {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.prose > * + * { margin-top: 1.15rem; }
+
+.prose h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-top: 2rem;
+}
+
+.prose h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 1.5rem;
+}
+
+.prose p { max-width: 68ch; }
+
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose a:hover { opacity: 0.8; }
+
+.prose ul,
+.prose ol {
+  padding-left: 1.35rem;
+  max-width: 68ch;
+}
+
+.prose li + li { margin-top: 0.35rem; }
+
+.prose code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.12rem 0.35rem;
+}
+
+.prose pre {
+  background: var(--bg-terminal);
+  color: #e5e7eb;
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--accent-line);
+  padding-left: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
 
 /* ---------------- Responsive ---------------- */
 @media (max-width: 860px) {
