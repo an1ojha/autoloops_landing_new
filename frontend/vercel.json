@@ -1,5 +1,8 @@
 {
   "rewrites": [
+    { "source": "/greplica/blog/:path*", "destination": "/greplica/blog/:path*" },
+    { "source": "/greplica/blog", "destination": "/greplica/blog/index.html" },
+    { "source": "/greplica/:path*", "destination": "/greplica/:path*" },
     { "source": "/greplica", "destination": "/greplica/index.html" },
     { "source": "/privacy", "destination": "/platform.html" },
     { "source": "/terms", "destination": "/platform.html" },
