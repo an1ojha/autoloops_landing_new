@@ -102,6 +102,15 @@
 </code></pre>
 <p>A practical example would be if a team needs to rework on a release made a couple months ago for a customer. Just like they would go back to the commit on that date and search for who worked on it, finding &quot;what was true in my memory when we released&quot; is equally important to know.</p>
 <h3>Memory should be grounded in code or other sources</h3>
+<p>It is important to have each MemoryCommit traceable to the exact session, doc or git commit it came from. So we added them as first-class citizens of the graph.</p>
+<pre><code class="language-bash">export interface Component {
+  id: ComponentId;
+  name: string;
+  code_anchor?: string;
+}
+</code></pre>
+<p>Components anchor to code paths. Claims cite Sources (session, PRD, doc, etc.) via evidenced_by edges — multiple sources per claim. Sources are edge-referenced, not scope-membership objects.</p>
+<p>If you find this work interesting or have feedback, please find us on <a href="https://discord.gg/QeztUKA2P">Discord</a>.</p>
 
       </div>
     </article>
