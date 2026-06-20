@@ -65,7 +65,7 @@
       <a class="blog-back" href="blog/">← Blog</a>
       <header class="blog-post-header">
         <h1>Designing a memory optimised for storing codebase context</h1>
-        <div class="blog-post-meta">19 June 2026 · Greplica Team · <span class="blog-tag">Engineering</span></div>
+        <div class="blog-post-meta">19 June 2026 · Anirudh · <span class="blog-tag">Article</span></div>
       </header>
       <div class="prose">
 <p>Memory systems have become popular but most of them suffer in performance from being spread too thin in terms of the use cases they support.</p>
@@ -74,7 +74,7 @@
 <p><strong>Greplica stores this information and surfaces it to the agent when it needs it, making it better at the task.</strong></p>
 <p><strong>At the highest level, the graph keeps a record of <em>Components</em>, <em>Flows</em>, and <em>Claims</em> of a code repository.</strong></p>
 <p><img src="blog/design-choices/components-flows-claims-table.png" alt="Components, Flows, and Claims"></p>
-<p><strong>For reference, the Greplica repo itself has 12 components, 9 flows and 69 claims.</strong></p>
+<p><strong>For reference, at the time of writing the Greplica repo itself has 12 components, 9 flows and 69 claims in around a month of development.</strong></p>
 <h2>Some primitives we solved for:</h2>
 <h3>Memory should be actively monitored to prevent stale or faulty information</h3>
 <p>The largest pain while using AGENTS.MD to maintain context is that the information goes stale faster than teams realise. That is something our system must avoid, as giving faulty information to the coding agent would mislead it and be harakiri for us.</p>
