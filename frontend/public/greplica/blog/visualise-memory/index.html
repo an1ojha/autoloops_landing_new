@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <base href="/greplica/" />
+
+  <title>Visualise your Codebase Memory built with Greplica</title>
+  <meta name="description" content="Browse, search, and audit your repo's engineering memory with greplica graph view — components, flows, claims, timeline, and overview dashboards." />
+
+  <link rel="canonical" href="https://autoloops.ai/greplica/blog/visualise-memory/" />
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://autoloops.ai/greplica/blog/visualise-memory/" />
+  <meta property="og:title" content="Visualise your Codebase Memory built with Greplica" />
+  <meta property="og:description" content="Browse, search, and audit your repo's engineering memory with greplica graph view — components, flows, claims, timeline, and overview dashboards." />
+  <meta property="og:image" content="https://autoloops.ai/assets/clawd.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Visualise your Codebase Memory built with Greplica" />
+  <meta name="twitter:description" content="Browse, search, and audit your repo's engineering memory with greplica graph view — components, flows, claims, timeline, and overview dashboards." />
+  <meta name="twitter:image" content="https://autoloops.ai/assets/clawd.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <div class="nav-bar">
+        <a class="brand" href="/">
+          <img class="brand-wordmark" src="assets/greplica-wordmark.png" alt="Greplica" draggable="false" />
+        </a>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+      <nav class="nav-menu" id="nav-menu" aria-label="Main">
+          <a href="blog/">Blog</a>
+          <a href="https://github.com/Autoloops/greplica">Docs</a>
+          <a href="https://discord.gg/QeztUKA2P">
+            <svg viewBox="0 0 127.14 96.36" fill="currentColor" aria-hidden="true"><path d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"/></svg>
+            Discord
+          </a>
+          <a href="https://github.com/Autoloops/greplica" class="nav-menu-github">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </nav>
+    </div>
+  </header>
+
+  <main class="blog-page wrap">
+    <article class="blog-post">
+      <a class="blog-back" href="blog/">← Blog</a>
+      <header class="blog-post-header">
+        <h1>Visualise your Codebase Memory built with Greplica</h1>
+        <div class="blog-post-meta">23 June 2026 · Anirudh · <span class="blog-tag">Product Release</span></div>
+      </header>
+      <div class="prose">
+<p>Greplica stores engineering context in a typed graph — components, flows, claims, and sources. Agents query it through the CLI, but humans need a way to browse that memory too. It is important to prune out stale memories, to promote working memories to durable main memories, to audit what got captured, and to spot gaps before they mislead the next session.</p>
+<p>We just shipped greplica graph view — a self-contained in-browser visualisation of your repo&#39;s memory. One command, no server, no config. It opens a local HTML file built directly from your graph database.</p>
+<p>If you have Greplica installed and a bootstrapped graph, you can see your whole codebase memory laid out like a wiki.</p>
+<p><img src="blog/visualise-memory/memory-brain-hero.png" alt="Codebase memory visualised as an interconnected knowledge graph"></p>
+<h2>Linked Wiki, no fancy graph</h2>
+<p>In our <a href="blog/design-choices/">earlier post on designing Greplica&#39;s memory model</a>, we argued that engineering memory must stay human-readable and human-verifiable.</p>
+<p>Greplica&#39;s memory is a graph — but we did not render it as one. Force-directed node diagrams look impressive in demos and become unreadable the moment a real repo has dozens of components and hundreds of claims.</p>
+<p>Instead, the viewer uses tables and hyperlinks that mimic the linkages. The graph structure is still there — about, contains, evidenced_by, supersedes — you just navigate it the way humans navigate wikis and dashboards, not the way graph theory textbooks draw edges.</p>
+<h2>The views</h2>
+<p>Greplica splits the graph into views that help audit how the memory is shaping up.</p>
+<h3>1. Components — &quot;What subsystems does this repo have?&quot;</h3>
+<p>A table of top-level components with code anchors, flow counts, claim counts, and subcomponent counts. Roughly corresponds to your folder structure.</p>
+<p>Click a claim count to jump to Claims filtered to that component.</p>
+<p><img src="blog/visualise-memory/graph-view-components-blog3.png" alt="Greplica graph view — Components table"></p>
+<h3>2. Flows — &quot;What processes matter in this repo?&quot;</h3>
+<p>Same table pattern as Components, but for top-level flows: name, description, which components each flow touches, and a clickable claim count. Useful when you care about how work moves through the system rather than where code lives.</p>
+<p><img src="blog/visualise-memory/graph-view-flows-blog3.png" alt="Greplica graph view — Flows table"></p>
+<h3>3. Claims — &quot;What do we actually know?&quot;</h3>
+<p>Every claim in one searchable table: claim text, session source, kind badge (fact, decision, requirement, task, risk, question), and created timestamp. A keyword search bar filters by substring match on claim text or id.</p>
+<p>Or better, click-through from Components, Flows, Overview, or Timeline lands here with the relevant subset already selected.</p>
+<p><img src="blog/visualise-memory/graph-view-claims-filtered-blog3.png" alt="Claims filtered by kind from Overview chart click"></p>
+<h3>4. Claims — Timeline — &quot;Which session created this memory?&quot;</h3>
+<p>Memory commits on a vertical timeline, newest first. Each item shows how many claims were added and the split between session-sourced and code-sourced facts.</p>
+<p>People tend to remember their stretch of work — what they were building and which decisions they took in that session — more easily than just through keywords. The timeline is organised around those batches so you can review what a particular session actually stored.</p>
+<p>Click a timeline entry to open only the claims from that commit in the Claims view.</p>
+<p><img src="blog/visualise-memory/graph-view-timeline-blog3.png" alt="Claims timeline"></p>
+<h3>5. Claims — Overview — &quot;What&#39;s the shape of our memory?&quot;</h3>
+<p>A summary dashboard with three pie charts — by type, by source, and by freshness — for high-level auditing or to narrow in on one kind of memory, e.g. only decisions vs requirements.</p>
+<p>Click any slice or legend row to filter the Claims table.</p>
+<p><img src="blog/visualise-memory/graph-view-overview-blog3.png" alt="Claims overview dashboard"></p>
+<p>Use the visualisation to audit the memories Greplica has captured for your repo — what landed from sessions, what is still active, and what has been superseded.</p>
+<h2>How to use</h2>
+<p>From any repo with Greplica bootstrapped:</p>
+<pre><code class="language-bash">greplica graph view [--out &lt;file&gt;] [--no-open]
+</code></pre>
+<p>By default this writes a self-contained HTML file to a temp path and opens it in your browser.</p>
+<p>For a deeper dive on why the graph looks like this — scopes, supersession, claim kinds — read <a href="blog/design-choices/">Designing a memory optimised for storing codebase context</a>.</p>
+<p>If you find this useful or want to shape what visual review UX looks like next, find us on <a href="https://discord.gg/QeztUKA2P">Discord</a>.</p>
+<nav class="blog-post-nav" aria-label="Post navigation">
+  <div class="blog-post-nav-grid blog-post-nav-grid--prev-only">
+    <a class="blog-post-nav-link blog-post-nav-prev" href="blog/design-choices/">
+      <span class="blog-post-nav-label">← Design choices</span>
+    </a>
+  </div>
+</nav>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <div class="footer-meta">
+          <p>Made with ☕ in TypeScript</p>
+          <p>© 2026 greplica</p>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="https://github.com/Autoloops/greplica">CLI</a>
+        <a href="blog/">Blog</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://github.com/Autoloops/greplica">GitHub</a>
+        <a href="https://discord.gg/QeztUKA2P">Discord</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/nav.js"></script>
+</body>
+</html>
